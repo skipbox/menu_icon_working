@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="goals.dream.menu_icon_working.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+             android:onClick="buttonOnClick"
+            android:text="do_it"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/b1"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="b2"
+            android:onClick="buttonOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/b2"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="time"
+            android:onClick="buttonOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/b3"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:id="@+id/tv_data"
+        android:layout_weight="0.01"
+        android:textColor="@android:color/holo_green_dark"
+        android:textColorHighlight="@android:color/holo_green_dark" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_show_hide"
+        android:layout_weight="0.12">
+
+
+    </LinearLayout>
+
+    <ImageSwitcher
+
+        android:id="@+id/img_sw"
+        android:layout_width="match_parent"
+        android:layout_height="72dp" />
+
+</LinearLayout>
+
+
+
+
+

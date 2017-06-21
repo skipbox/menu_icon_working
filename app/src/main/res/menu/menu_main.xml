@@ -1,0 +1,46 @@
+ <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="goals.dream.menu_icon_working.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_1"
+        android:orderInCategory="100"
+        android:title="Restart"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_2"
+        android:orderInCategory="100"
+        android:title="222"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_3"
+        android:orderInCategory="100"
+        android:title="333"
+        app:showAsAction="never" />
+      <item
+        android:id="@+id/menu_top_3"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_save" />
+
+    <item
+        android:id="@+id/menu_top_star"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="always"
+        android:icon="@android:drawable/btn_star_big_off" />
+
+      <item
+        android:id="@+id/menu_top_bell"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_popup_reminder" />
+</menu>
+
