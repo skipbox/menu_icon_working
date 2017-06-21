@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
        public static final String key_show_buttons = "true"; //x
        public static final String key_bell = "key_bell_false"; //x
        public static final String key_star = "key_star_false"; //x
+           public static final String key_plus = "key_plus_false"; //x
+           public static final String key_lock = "key_lock_false"; //x
     //can also use integers
     SharedPreferences sharedpreferences;
 //SharedPreferences========================================================
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         //my stuff
         this.setTitle("this.setTitle");
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-
+//set_menu_icons();//could crash here
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,28 +95,56 @@ Menu my_menu;
             return true;
         }
  //menu icons below
+        //with with quotes or without ... interesting
+        if (id == R.id.menu_top_bell) {
+        shared_flip_flop(key_bell);
+        set_menu_icons();
+        }
+
         if (id == R.id.menu_top_star) {
-            global_star=!global_star;
-            set_menu_icons();
+        shared_flip_flop(key_star);
+        set_menu_icons();
         }
-         if (id == R.id.menu_top_bell) {
-            //Toast.makeText(this, "menu_top_bell", Toast.LENGTH_SHORT).show();
-            //MenuItem item_x = my_menu.findItem(R.id.menu_top_bell); //find ITEM
-
-            global_bell=!global_bell;
-            set_menu_icons();
-
-//         if(global_bell == true){item_x.setIcon(R.drawable.ic_alarm_on_black_24dp);}
-//         if(global_bell == false){item_x.setIcon(R.drawable.ic_alarm_off_black_24dp);}
-//         global_bell=!global_bell;
-
-
-
-             //set_menu_icons();
-           // return true;
+        if (id == R.id.menu_top_plus) {
+        shared_flip_flop(key_plus);
+        set_menu_icons();
         }
+        if (id == R.id.menu_top_star) {
+        shared_flip_flop(key_lock);
+        set_menu_icons();
+        }
+//         if (id == R.id.menu_top_plus) {
+//            global_plus=!global_plus;
+//            set_menu_icons();
+//        }
+//         if (id == R.id.menu_top_lock) {
+//            global_lock=!global_lock;
+//            set_menu_icons();
+//        }
         return super.onOptionsItemSelected(item);
     }
+
+ public Boolean shared_flip_flop(String key_to_flip_and_save){
+    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        if(sharedpreferences.getString(key_to_flip_and_save,"false_false").equals("false_false")){
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(key_to_flip_and_save, "true_true");
+            editor.apply();
+            return true;
+            }
+         if(sharedpreferences.getString(key_to_flip_and_save,"false_false").equals("true_true")){
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(key_to_flip_and_save, "false_false");
+            editor.apply();
+            return true;
+            }
+ return false;
+ }
+
+
+
+
 
 //For set Title : getActionBar().setTitle("Title");
 //For set Icon: getActionBar().setIcon(R.drawable.YOUR_ICON_NAME);
@@ -153,17 +184,24 @@ Menu my_menu;
 
 Boolean global_bell = false;
 Boolean global_star = false;
+Boolean global_plus = false;
+Boolean global_lock = false;
  //============== shared pref
-        private void load_shared_pref() {
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String temp_1 = sharedpreferences.getString(key_bell,"false_false");
-        String temp_2 = sharedpreferences.getString(key_star,"false_false");
+private void load_shared_pref() {
+sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+    if(sharedpreferences.getString(key_bell,"default").equals("false_false")){global_bell = false;}
+    if(sharedpreferences.getString(key_bell,"default").equals("true_true")){global_bell = true;}
 
-        if(sharedpreferences.getString(key_bell,"default").equals("false_false")){
-        global_bell = false;}
-        if(sharedpreferences.getString(key_bell,"default").equals("true_true")){
-        global_bell = true;}
+    if(sharedpreferences.getString(key_star,"default").equals("false_false")){global_star = false;}
+    if(sharedpreferences.getString(key_star,"default").equals("true_true")){global_star = true;}
+
+    if(sharedpreferences.getString(key_plus,"default").equals("false_false")){global_plus = false;}
+    if(sharedpreferences.getString(key_plus,"default").equals("true_true")){global_plus = true;}
+
+    if(sharedpreferences.getString(key_lock,"default").equals("false_false")){global_lock = false;}
+    if(sharedpreferences.getString(key_lock,"default").equals("true_true")){global_lock = true;}
+
 
 
           //global_bell=!global_bell;
@@ -180,13 +218,44 @@ Boolean global_star = false;
      //public void set_menu_icons (MenuItem item){
      public void set_menu_icons (){
         //notice its find by item not find by id
+
+         //SharedPreferences.Editor editor = sharedpreferences.edit();
+         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+
+         TextView tv_data_x = (TextView)findViewById(R.id.tv_data);
+         tv_data_x.setText(
+         (sharedpreferences.getString(key_bell,"default"))+"\n"+
+         (sharedpreferences.getString(key_star,"default"))+"\n"+
+         (sharedpreferences.getString(key_plus,"default"))+"\n"+
+         (sharedpreferences.getString(key_lock,"default"))+"\n"
+
+         );
+
+
+          //
          MenuItem item_aaa = my_menu.findItem(R.id.menu_top_bell); //find ITEM
-         if(global_bell == true){item_aaa.setIcon(R.drawable.ic_alarm_on_black_24dp);}
-         if(global_bell == false){item_aaa.setIcon(R.drawable.ic_alarm_off_black_24dp);}
+         if(sharedpreferences.getString(key_bell,"default").equals("false_false")){
+         item_aaa.setIcon(R.drawable.ic_alarm_on_black_24dp);}
+         if(sharedpreferences.getString(key_bell,"default").equals("true_true")){
+         item_aaa.setIcon(R.drawable.ic_alarm_off_black_24dp);}
 
          MenuItem item_bbb = my_menu.findItem(R.id.menu_top_star); //find ITEM
-         if(global_star == true){item_bbb.setIcon(R.drawable.transparent_bulb_off_200px);}
-         if(global_star == false){item_bbb.setIcon(R.drawable.transparent_light_on);}
+         if(sharedpreferences.getString(key_star,"default").equals("false_false")){
+         item_bbb.setIcon(R.drawable.transparent_bulb_off);}
+         if(sharedpreferences.getString(key_star,"default").equals("true_true")){
+         item_bbb.setIcon(R.drawable.transparent_bulb_on);}
+
+         MenuItem item_ccc = my_menu.findItem(R.id.menu_top_plus); //find ITEM
+         if(sharedpreferences.getString(key_plus,"default").equals("false_false")){
+         item_ccc.setIcon(R.drawable.power_off_bw);}
+         if(sharedpreferences.getString(key_plus,"default").equals("true_true")){
+         item_ccc.setIcon(R.drawable.power_on_green);}
+
+
+         MenuItem item_ddd = my_menu.findItem(R.id.menu_top_lock); //find ITEM
+         if(global_lock == true){item_ddd.setIcon(R.drawable.lock_1);}
+         if(global_lock == false){item_ddd.setIcon(R.drawable.check_square);}
 
     }
 

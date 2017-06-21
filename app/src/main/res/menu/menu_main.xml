@@ -29,12 +29,17 @@
         app:showAsAction="never" />
 <!-- menu below -->
       <item
-        android:id="@+id/menu_top_3"
+        android:id="@+id/menu_top_lock"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_save" />
-
+        android:icon="@drawable/lock_1" />
+      <item
+        android:id="@+id/menu_top_plus"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_input_add" />
     <item
         android:id="@+id/menu_top_star"
         android:orderInCategory="100"
