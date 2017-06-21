@@ -2,6 +2,8 @@ package goals.dream.menu_icon_working;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //my stuff
+        this.setTitle("this.setTitle");
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-    }
+    }//end of oncreate
 Menu my_menu;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,6 +86,12 @@ Menu my_menu;
             Toast.makeText(this, "action_settings", Toast.LENGTH_SHORT).show();
             return true;
         }
+        if (id == R.id.action_exit) {
+            Toast.makeText(this, "Bye bye", Toast.LENGTH_SHORT).show();
+            finish();
+            return true;
+        }
+ //menu icons below
         if (id == R.id.menu_top_star) {
             global_star=!global_star;
             set_menu_icons();
@@ -102,6 +114,43 @@ Menu my_menu;
         }
         return super.onOptionsItemSelected(item);
     }
+
+//For set Title : getActionBar().setTitle("Title");
+//For set Icon: getActionBar().setIcon(R.drawable.YOUR_ICON_NAME);
+//
+          //button clicks------------------------------------------------------------------
+    public void buttonOnClick(View view) {
+        int the_id = view.getId();
+        if (the_id == R.id.b1) {
+            //ImageView img_1_x = (ImageView)findViewById(R.id.img_1);
+            //getActionBar().setIcon(R.drawable.lock_2);
+            //getActionBar().setTitle("Icon");
+
+
+        }
+        if (the_id == R.id.b2) {
+            Toast.makeText(this, "but_2_works", Toast.LENGTH_SHORT).show();
+        }
+        if (the_id == R.id.b3) {
+            Toast.makeText(this, "but_3_works", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+//IMAGE  clicks------------------------------------------------------------------
+    public void img_click_control(View view) {
+        int the_id = view.getId();
+        if (the_id == R.id.img_v_1) {
+            Toast.makeText(this, "but_2_works", Toast.LENGTH_SHORT).show();
+        }
+        if (the_id == R.id.img_v_2) {
+            Toast.makeText(this, "img_v_2", Toast.LENGTH_SHORT).show();
+        }
+        if (the_id == R.id.img_v_3) {
+            Toast.makeText(this, "img_v_3", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 Boolean global_bell = false;
 Boolean global_star = false;
  //============== shared pref

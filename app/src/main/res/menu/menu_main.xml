@@ -22,6 +22,12 @@
         android:orderInCategory="100"
         android:title="333"
         app:showAsAction="never" />
+     <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="100"
+        android:title="Exit"
+        app:showAsAction="never" />
+<!-- menu below -->
       <item
         android:id="@+id/menu_top_3"
         android:orderInCategory="100"
